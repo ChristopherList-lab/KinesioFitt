@@ -156,12 +156,15 @@
       linear-gradient(180deg, rgba(10,10,10,0.10) 0%, rgba(10,10,10,0.0) 40%, rgba(10,10,10,0.35) 100%);
   }
 
-  /* Mobile: stack the hero — full 16:9 photo on top, text below on solid bg */
+  /* Mobile: stack the hero — meta line, full 16:9 photo, then text below */
+  .hero-meta-mobile { display: none; }
   @media (max-width: 767px) {
     .hero-section {
       display: block;
       min-height: 0;
     }
+    .hero-meta-mobile { display: block; }
+    .hero-content > .t-meta:first-child { display: none; }
     .hero-media {
       position: relative;
       inset: auto;
@@ -274,6 +277,9 @@
 
 <!-- Hero -->
 <section class="hero-section relative min-h-[88vh] flex items-center bg-ink overflow-hidden">
+  <div class="hero-meta-mobile px-margin pt-6 pb-4 t-meta text-white/70">
+    <span>[01]</span><span class="mx-3">·</span><span>MASON, TX</span><span class="mx-3">·</span><span>NORTHWEST OF THE SQUARE</span>
+  </div>
   <div class="hero-media absolute inset-0 z-0">
     <img src="Hero02.jpg" alt="Kinesio Fitt storefront on the Mason square at night" class="hero-img w-full h-full object-cover object-right ken-burns" fetchpriority="high" decoding="async" />
     <div class="absolute inset-0 hero-overlay"></div>
