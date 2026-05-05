@@ -1,0 +1,23 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Raw camera originals (too large; we ship the processed web-photos/)
+Photos/
+
+# Oversized assets we don't ship to the site
+ModernLogo.png
+ModernLogo.jpg
+KFitLogo_BEFORE.png
+
+# Scraped reference (not part of the build)
+KidsClimb.html
+KidsClimb_files/
+
+# Local plan/scratch files
+.claude/
+*.tmp

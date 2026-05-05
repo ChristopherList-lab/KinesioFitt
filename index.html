@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<title>Kinesio Fitt — The Gym on the Square in Mason, TX</title>
+<meta name="description" content="Family-owned gym on the Mason square. Group classes, free weights, sauna, and a kids club. Get a guest pass and try us free." />
+
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect" />
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          cobalt: "#1E6BFF",
+          "cobalt-dark": "#0B2E66",
+          ink: "#0A0A0A",
+          "off-white": "#FAF8F5",
+          concrete: "#F0EDE8",
+          "warm-sand": "#D6D2CB",
+          mute: "#6B6B6B",
+        },
+        fontFamily: {
+          display: ["Space Grotesk", "sans-serif"],
+          body: ["Inter", "sans-serif"],
+          mono: ["JetBrains Mono", "monospace"],
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  :root {
+    --margin-x: clamp(20px, 4vw, 56px);
+    --section-y: clamp(64px, 10vw, 140px);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: #FAF8F5;
+    color: #0A0A0A;
+    font-family: "Inter", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .px-margin { padding-left: var(--margin-x); padding-right: var(--margin-x); }
+  .py-section { padding-top: var(--section-y); padding-bottom: var(--section-y); }
+
+  /* Type scale — fluid */
+  .t-display { font-family: "Space Grotesk"; font-weight: 700; line-height: 0.92; letter-spacing: -0.035em; font-size: clamp(56px, 11vw, 168px); }
+  .t-headline { font-family: "Space Grotesk"; font-weight: 700; line-height: 1.02; letter-spacing: -0.025em; font-size: clamp(36px, 5.5vw, 72px); }
+  .t-title { font-family: "Space Grotesk"; font-weight: 700; line-height: 1.1; letter-spacing: -0.015em; font-size: clamp(22px, 2.6vw, 32px); }
+  .t-body-lg { font-family: "Inter"; font-weight: 400; line-height: 1.55; font-size: clamp(16px, 1.3vw, 18px); }
+  .t-body { font-family: "Inter"; font-weight: 400; line-height: 1.6; font-size: 15px; }
+  .t-meta { font-family: "JetBrains Mono"; font-weight: 500; font-size: 11px; letter-spacing: 0.08em; line-height: 1; text-transform: uppercase; }
+  .t-meta-lg { font-family: "JetBrains Mono"; font-weight: 500; font-size: 13px; letter-spacing: 0.06em; line-height: 1.4; text-transform: uppercase; }
+
+  /* Hairlines */
+  .hl-b { border-bottom: 1px solid #D6D2CB; }
+  .hl-t { border-top: 1px solid #D6D2CB; }
+  .hl-r { border-right: 1px solid #D6D2CB; }
+  @media (max-width: 767px) {
+    .md\:hl-r { border-right: 0; }
+  }
+
+  /* Marquee */
+  .marquee { overflow: hidden; }
+  .marquee-track { display: flex; animation: marquee 40s linear infinite; white-space: nowrap; }
+  .marquee-track > span { padding: 0 28px; }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Button hover swap */
+  .btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; }
+  .btn .btn-label, .btn .btn-icon {
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.28s ease;
+  }
+  .btn .btn-icon { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; transform: translateY(110%); opacity: 0; }
+  .btn:hover .btn-label { transform: translateY(-110%); opacity: 0; }
+  .btn:hover .btn-icon { transform: translateY(0); opacity: 1; }
+
+  /* Image card */
+  .img-card { overflow: hidden; }
+  .img-card img { transition: transform 0.6s cubic-bezier(0.2, 0.6, 0.2, 1); display: block; width: 100%; height: 100%; object-fit: cover; }
+  .img-card:hover img { transform: scale(1.03); }
+
+  /* Subtle dark gradient overlay for gym interior shots — moody, not heavy */
+  .dim-photo { position: relative; }
+  .dim-photo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10,10,10,0.25) 0%, rgba(10,10,10,0.55) 100%);
+    pointer-events: none;
+    z-index: 1;
+    transition: opacity 400ms ease;
+  }
+  .img-card:hover .dim-photo::after,
+  .dim-photo.img-card:hover::after { opacity: 0.7; }
+
+  /* Logo entry */
+  @keyframes fade-up { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-up { animation: fade-up 500ms cubic-bezier(0.2, 0.6, 0.2, 1) both; }
+
+  /* Hero gradient overlay — left-weighted for legibility on the dark side of the photo */
+  .hero-overlay {
+    background:
+      linear-gradient(90deg, rgba(10,10,10,0.78) 0%, rgba(10,10,10,0.45) 35%, rgba(10,10,10,0.10) 65%, rgba(10,10,10,0.0) 100%),
+      linear-gradient(180deg, rgba(10,10,10,0.10) 0%, rgba(10,10,10,0.0) 40%, rgba(10,10,10,0.35) 100%);
+  }
+
+  /* Mobile bottom CTA spacer */
+  @media (max-width: 767px) {
+    body { padding-bottom: 64px; }
+  }
+
+  /* Hero ken-burns — extremely slow, just enough to feel alive */
+  @keyframes ken-burns {
+    0%   { transform: scale(1.0) translate(0, 0); }
+    50%  { transform: scale(1.06) translate(-1.2%, -0.6%); }
+    100% { transform: scale(1.0) translate(0, 0); }
+  }
+  .ken-burns { animation: ken-burns 36s ease-in-out infinite; will-change: transform; }
+
+  /* Marquee pause on hover */
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+
+  /* Scroll reveal — opacity + small lift, staggered by data-delay */
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity 700ms cubic-bezier(0.2, 0.6, 0.2, 1), transform 700ms cubic-bezier(0.2, 0.6, 0.2, 1); }
+  .reveal.is-in { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .ken-burns { animation: none; }
+  }
+
+  /* Class list row: cobalt bar slides in on hover */
+  .row-bar { position: relative; }
+  .row-bar::before {
+    content: ""; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 0; background: #1E6BFF;
+    transition: width 280ms cubic-bezier(0.2, 0.6, 0.2, 1);
+  }
+  .row-bar:hover::before { width: 4px; }
+
+  /* Closing CTA — slow drift on the giant headline */
+  @keyframes drift {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-6px); }
+  }
+  .cta-drift { animation: drift 7s ease-in-out infinite; }
+
+  /* Subtle nav shadow when scrolled */
+  .nav-scrolled { box-shadow: 0 1px 0 rgba(10,10,10,0.04), 0 8px 24px rgba(10,10,10,0.04); }
+
+  /* Modal */
+  .modal { position: fixed; inset: 0; z-index: 100; display: none; }
+  .modal.is-open { display: flex; }
+  .modal-backdrop { position: absolute; inset: 0; background: rgba(10,10,10,0.7); backdrop-filter: blur(6px); animation: fade 240ms ease-out; }
+  .modal-card {
+    position: relative; margin: auto; width: min(560px, calc(100vw - 32px));
+    background: #FAF8F5; border: 1px solid #D6D2CB;
+    animation: pop 320ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes pop { from { opacity: 0; transform: translateY(12px) scale(0.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
+  .modal-input {
+    background: transparent; border: 0; border-bottom: 1px solid #D6D2CB;
+    padding: 12px 0; font-family: "Inter", sans-serif; font-size: 16px; color: #0A0A0A;
+    width: 100%; outline: none; transition: border-color 200ms ease;
+  }
+  .modal-input::placeholder { color: #6B6B6B; }
+  .modal-input:focus { border-color: #1E6BFF; }
+  body.modal-open { overflow: hidden; }
+</style>
+</head>
+
+<body class="selection:bg-cobalt selection:text-white">
+
+<!-- Top Nav -->
+<nav class="bg-off-white/90 backdrop-blur-md sticky top-0 z-50 hl-b flex justify-between items-center w-full px-margin py-3.5">
+  <a href="/" class="fade-up flex items-center" aria-label="Kinesio Fitt — Home">
+    <img src="Horizontal RGB.avif" alt="Kinesio Fitt" class="h-7 md:h-9 w-auto" />
+  </a>
+
+  <div class="hidden lg:flex gap-7 items-center font-display font-medium text-[14px] tracking-tight">
+    <a class="text-mute hover:text-ink transition-colors" href="#classes">Classes</a>
+    <a class="text-mute hover:text-ink transition-colors" href="#membership">Membership</a>
+    <a class="text-mute hover:text-ink transition-colors" href="#amenities">Amenities</a>
+    <a class="text-mute hover:text-ink transition-colors" href="#kids-club">Kids Club</a>
+    <a class="text-mute hover:text-ink transition-colors" href="#visit">Visit</a>
+  </div>
+
+  <div class="flex gap-2 items-center">
+    <a href="https://kinesiofitt.gymmasteronline.com/portal/login" target="_blank" rel="noopener" class="hidden md:inline-block t-meta border border-warm-sand px-3.5 py-2.5 hover:bg-concrete transition-colors">LOGIN</a>
+    <a href="#" data-day-pass class="btn bg-cobalt hover:bg-cobalt-dark text-white t-meta px-4 py-2.5 md:px-5 md:py-3 transition-colors">
+      <span class="btn-label">FREE DAY PASS</span>
+      <span class="btn-icon material-symbols-outlined" aria-hidden="true" style="font-size:18px">arrow_forward</span>
+    </a>
+  </div>
+</nav>
+
+<main>
+
+<!-- Hero -->
+<section class="relative min-h-[88vh] flex items-center bg-ink overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img src="Hero02.jpg" alt="Kinesio Fitt storefront on the Mason square at night" class="w-full h-full object-cover object-right ken-burns" />
+    <div class="absolute inset-0 hero-overlay"></div>
+  </div>
+
+  <div class="relative z-10 px-margin py-16 md:py-24 max-w-[820px]">
+    <div class="t-meta text-white/70 mb-6 fade-up">
+      <span>[01]</span><span class="mx-3">·</span><span>MASON, TX</span><span class="mx-3">·</span><span>NORTHWEST OF THE SQUARE</span>
+    </div>
+
+    <h1 class="t-display text-white uppercase mb-8 fade-up" style="animation-delay:80ms">
+      THE GYM<br/>ON THE SQUARE.
+    </h1>
+
+    <p class="t-body-lg text-white/90 max-w-xl mb-10 fade-up" style="animation-delay:140ms">
+      Mason's only full-service fitness center. Group classes, free weights, sauna, kids club. Your first day is free.
+    </p>
+
+    <div class="flex flex-wrap items-center gap-4 fade-up" style="animation-delay:200ms">
+      <a href="#" data-day-pass class="btn bg-cobalt hover:bg-cobalt-dark text-white t-meta px-7 py-4 transition-colors">
+        <span class="btn-label">CLAIM FREE DAY PASS</span>
+        <span class="btn-icon material-symbols-outlined" aria-hidden="true" style="font-size:18px">arrow_forward</span>
+      </a>
+      <a href="#membership" class="t-meta text-white/80 hover:text-white border border-white/30 hover:border-white/60 px-6 py-4 transition-colors">SEE MEMBERSHIP</a>
+    </div>
+  </div>
+</section>
+
+<!-- Marquee -->
+<div class="bg-cobalt text-white py-4 md:py-5 marquee hl-b">
+  <div class="marquee-track font-mono uppercase tracking-[0.06em] font-medium text-[14px] md:text-[18px]">
+    <span>CLAIM YOUR FREE DAY PASS</span><span>·</span>
+    <span>310 FORT MCKAVITT ST</span><span>·</span>
+    <span>MASON, TX 76856</span><span>·</span>
+    <span>OPEN TIL 9PM WEEKDAYS</span><span>·</span>
+    <span>KIDS CLUB INCLUDED</span><span>·</span>
+    <span>SAUNA · SPIN · FREE WEIGHTS</span><span>·</span>
+    <span>CLAIM YOUR FREE DAY PASS</span><span>·</span>
+    <span>310 FORT MCKAVITT ST</span><span>·</span>
+    <span>MASON, TX 76856</span><span>·</span>
+    <span>OPEN TIL 9PM WEEKDAYS</span><span>·</span>
+    <span>KIDS CLUB INCLUDED</span><span>·</span>
+    <span>SAUNA · SPIN · FREE WEIGHTS</span><span>·</span>
+  </div>
+</div>
+
+<!-- Intro -->
+<section class="px-margin py-section hl-b">
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
+    <div class="md:col-span-7 reveal">
+      <p class="t-meta text-mute mb-6">[INTRO · NO. 001]</p>
+      <h2 class="t-headline uppercase">
+        A real gym in Mason.<br/>
+        <span class="text-mute">Built for the people who live here.</span>
+      </h2>
+    </div>
+    <div class="md:col-span-5 md:col-start-8 lg:col-span-4 lg:col-start-9 reveal" style="transition-delay:120ms">
+      <p class="t-meta text-mute mb-6">[ON THE SQUARE · EST. MASON, TX]</p>
+      <p class="t-body-lg text-mute">
+        Kinesio Fitt sits on the northwest corner of the historical square. Family-owned, full-service, and open before sunrise. No contracts on the wall, no chrome and no posers. Just a serious place to train, with a kids club so you can actually show up.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Proof Points -->
+<section class="grid grid-cols-1 md:grid-cols-3 hl-b">
+  <div class="px-margin py-12 md:py-16 md:hl-r border-b border-warm-sand md:border-b-0 group">
+    <p class="t-meta text-mute mb-6">[01]</p>
+    <h3 class="font-display font-bold uppercase leading-[1.02] tracking-[-0.02em] text-[clamp(28px,3.6vw,44px)] group-hover:text-cobalt transition-colors">Family<br/>owned</h3>
+    <p class="t-body text-mute mt-4 max-w-[28ch]">Built and run by locals. The owners know your name on day one.</p>
+  </div>
+  <div class="px-margin py-12 md:py-16 md:hl-r border-b border-warm-sand md:border-b-0 bg-concrete group">
+    <p class="t-meta text-mute mb-6">[02]</p>
+    <h3 class="font-display font-bold uppercase leading-[1.02] tracking-[-0.02em] text-[clamp(28px,3.6vw,44px)] group-hover:text-cobalt transition-colors">Full<br/>service</h3>
+    <p class="t-body text-mute mt-4 max-w-[28ch]">Free weights, machines, spin, sauna, group classes, kids club. Everything in one stop.</p>
+  </div>
+  <div class="px-margin py-12 md:py-16 group">
+    <p class="t-meta text-mute mb-6">[03]</p>
+    <h3 class="font-display font-bold uppercase leading-[1.02] tracking-[-0.02em] text-[clamp(28px,3.6vw,44px)] group-hover:text-cobalt transition-colors">Open<br/>early.</h3>
+    <p class="t-body text-mute mt-4 max-w-[28ch]">Doors open at 5:30am Monday through Friday. Train before work and still beat the heat.</p>
+  </div>
+</section>
+
+<!-- Editorial Spread — three vertical shots of the gym -->
+<section class="bg-ink relative px-margin py-section">
+  <div class="flex items-end justify-between mb-12 md:mb-16 flex-wrap gap-6">
+    <div>
+      <p class="t-meta text-white/50 mb-5">[FIG 01 · INSIDE]</p>
+      <h2 class="t-headline text-white uppercase">No frills.<br/>No app. Just train.</h2>
+    </div>
+    <p class="t-body-lg text-white/70 max-w-md">Walk in. Pick a bar, a bike, or a class. The room takes care of the rest.</p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
+    <figure class="img-card">
+      <div class="dim-photo aspect-[3/4] bg-stone-800 overflow-hidden">
+        <img src="web-photos/IMG_1845.jpg" alt="Heavy bag and Rogue rack on blue turf training lane" />
+      </div>
+      <figcaption class="hl-t border-stone-800 pt-4 mt-4 flex justify-between items-baseline">
+        <span class="t-meta text-white">THE FLOOR</span>
+        <span class="t-meta text-white/40">01</span>
+      </figcaption>
+    </figure>
+    <figure class="img-card">
+      <div class="dim-photo aspect-[3/4] bg-stone-800 overflow-hidden">
+        <img src="web-photos/IMG_1840.jpg" alt="Group fitness studio with mirrored wall and concrete floor" />
+      </div>
+      <figcaption class="hl-t border-stone-800 pt-4 mt-4 flex justify-between items-baseline">
+        <span class="t-meta text-white">THE STUDIO</span>
+        <span class="t-meta text-white/40">02</span>
+      </figcaption>
+    </figure>
+    <figure class="img-card">
+      <div class="dim-photo aspect-[3/4] bg-stone-800 overflow-hidden">
+        <img src="web-photos/IMG_1833.jpg" alt="Front desk and Kinesio Fitt apparel display" />
+      </div>
+      <figcaption class="hl-t border-stone-800 pt-4 mt-4 flex justify-between items-baseline">
+        <span class="t-meta text-white">THE DESK</span>
+        <span class="t-meta text-white/40">03</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- Meet the Owner -->
+<section id="owner" class="px-margin py-section hl-b bg-off-white">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 items-start">
+
+    <!-- Portrait -->
+    <figure class="lg:col-span-5 reveal img-card">
+      <div class="aspect-[4/5] bg-warm-sand overflow-hidden relative">
+        <img src="UbaldoHeadshot_AI.jpg" alt="Ubaldo, owner and physical therapist at Kinesio Fitt" class="w-full h-full object-cover object-top" />
+      </div>
+      <figcaption class="hl-t pt-4 mt-4 flex justify-between items-baseline">
+        <span class="t-meta">UBALDO</span>
+        <span class="t-meta text-mute">OWNER · PT</span>
+      </figcaption>
+    </figure>
+
+    <!-- Copy + Testimonial -->
+    <div class="lg:col-span-7 lg:pl-4">
+      <div class="reveal">
+        <p class="t-meta text-mute mb-6">[OWNER · OPERATOR]</p>
+        <h2 class="t-headline uppercase mb-8">
+          Run by Ubaldo.<br/>
+          <span class="text-mute">Therapist. Trainer. Owner.</span>
+        </h2>
+        <div class="space-y-5 t-body-lg max-w-2xl">
+          <p>Kinesio Fitt isn't run by a regional manager. It's run by Ubaldo, a working physical therapist who owns the gym and treats members on the floor.</p>
+          <p class="text-mute">When you join, you're not signing up for an app and a fob. You're walking into a place where the person at the front desk knows your shoulder, your knee, and your name.</p>
+        </div>
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <span class="t-meta border border-warm-sand px-4 py-2.5">PHYSICAL THERAPY</span>
+          <span class="t-meta border border-warm-sand px-4 py-2.5">PERSONAL TRAINING</span>
+          <span class="t-meta border border-warm-sand px-4 py-2.5">FAMILY OWNED</span>
+        </div>
+      </div>
+
+      <!-- Pulled testimonial -->
+      <div class="bg-ink text-white p-8 md:p-10 mt-12 reveal" style="transition-delay:120ms">
+        <div class="flex items-center gap-1 mb-5">
+          <span class="material-symbols-outlined text-cobalt" style="font-size:18px;font-variation-settings:'FILL' 1">star</span>
+          <span class="material-symbols-outlined text-cobalt" style="font-size:18px;font-variation-settings:'FILL' 1">star</span>
+          <span class="material-symbols-outlined text-cobalt" style="font-size:18px;font-variation-settings:'FILL' 1">star</span>
+          <span class="material-symbols-outlined text-cobalt" style="font-size:18px;font-variation-settings:'FILL' 1">star</span>
+          <span class="material-symbols-outlined text-cobalt" style="font-size:18px;font-variation-settings:'FILL' 1">star</span>
+        </div>
+        <blockquote class="font-display font-medium text-[clamp(20px,2.2vw,26px)] leading-[1.3] mb-6">
+          "Ubaldo is a miracle worker. I've struggled with shoulder and back pain for a long time and have seen multiple physical therapists, massage therapists, and chiropractors. None of whom were able to help."
+        </blockquote>
+        <div class="hl-t border-stone-700 pt-4 flex justify-between items-baseline">
+          <cite class="t-meta not-italic text-white">MARGARET DUPONT</cite>
+          <span class="t-meta text-stone-500">VERIFIED · GOOGLE</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Classes -->
+<section id="classes" class="grid grid-cols-1 lg:grid-cols-12 hl-b">
+  <div class="lg:col-span-7 px-margin py-section md:hl-r bg-concrete">
+    <p class="t-meta text-mute mb-6">[02 / PROGRAMMING]</p>
+    <h3 class="t-headline uppercase mb-12">What you'll<br/>train.</h3>
+
+    <ul class="border-t border-warm-sand">
+      <li class="row-bar flex items-baseline gap-6 md:gap-10 border-b border-warm-sand py-5 group cursor-pointer hover:bg-off-white transition-colors -mx-4 pl-6 pr-4">
+        <span class="t-meta text-mute w-10 shrink-0">01/</span>
+        <span class="t-title uppercase group-hover:text-cobalt transition-colors flex-1">Body Strength</span>
+        <span class="t-meta text-mute hidden md:inline">STRENGTH</span>
+      </li>
+      <li class="row-bar flex items-baseline gap-6 md:gap-10 border-b border-warm-sand py-5 group cursor-pointer hover:bg-off-white transition-colors -mx-4 pl-6 pr-4">
+        <span class="t-meta text-mute w-10 shrink-0">02/</span>
+        <span class="t-title uppercase group-hover:text-cobalt transition-colors flex-1">Vinyasa Hot Yoga</span>
+        <span class="t-meta text-mute hidden md:inline">YOGA</span>
+      </li>
+      <li class="row-bar flex items-baseline gap-6 md:gap-10 border-b border-warm-sand py-5 group cursor-pointer hover:bg-off-white transition-colors -mx-4 pl-6 pr-4">
+        <span class="t-meta text-mute w-10 shrink-0">03/</span>
+        <span class="t-title uppercase group-hover:text-cobalt transition-colors flex-1">Group Weight Training</span>
+        <span class="t-meta text-mute hidden md:inline">STRENGTH</span>
+      </li>
+      <li class="row-bar flex items-baseline gap-6 md:gap-10 border-b border-warm-sand py-5 group cursor-pointer hover:bg-off-white transition-colors -mx-4 pl-6 pr-4">
+        <span class="t-meta text-mute w-10 shrink-0">04/</span>
+        <span class="t-title uppercase group-hover:text-cobalt transition-colors flex-1">Pilates</span>
+        <span class="t-meta text-mute hidden md:inline">CORE</span>
+      </li>
+      <li class="row-bar flex items-baseline gap-6 md:gap-10 border-b border-warm-sand py-5 group cursor-pointer hover:bg-off-white transition-colors -mx-4 pl-6 pr-4">
+        <span class="t-meta text-mute w-10 shrink-0">05/</span>
+        <span class="t-title uppercase group-hover:text-cobalt transition-colors flex-1">Zumba & Strong</span>
+        <span class="t-meta text-mute hidden md:inline">CARDIO</span>
+      </li>
+      <li class="row-bar flex items-baseline gap-6 md:gap-10 border-b border-warm-sand py-5 group cursor-pointer hover:bg-off-white transition-colors -mx-4 pl-6 pr-4">
+        <span class="t-meta text-mute w-10 shrink-0">06/</span>
+        <span class="t-title uppercase group-hover:text-cobalt transition-colors flex-1">Mobility & Stretch</span>
+        <span class="t-meta text-mute hidden md:inline">RECOVERY</span>
+      </li>
+      <li class="flex items-baseline gap-6 md:gap-10 py-5 group cursor-pointer hover:bg-off-white transition-colors -mx-4 px-4">
+        <span class="t-meta text-mute w-10 shrink-0">+4</span>
+        <span class="t-title uppercase text-mute group-hover:text-cobalt transition-colors flex-1">See full schedule →</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Membership teaser -->
+  <div id="membership" class="lg:col-span-5 px-margin py-section flex flex-col justify-center">
+    <p class="t-meta text-mute mb-6">[03 / ACCESS]</p>
+    <h3 class="t-headline uppercase mb-10">Try it<br/>before you commit.</h3>
+
+    <div class="grid grid-cols-2 border border-warm-sand bg-off-white mb-8">
+      <div class="p-5 md:p-7 hl-r">
+        <p class="t-meta text-mute mb-3">DAY PASS</p>
+        <p class="font-display font-bold text-[44px] md:text-[56px] leading-none mb-4">$10</p>
+        <p class="t-meta text-mute hl-t pt-3">ONE DAY · ALL ACCESS</p>
+      </div>
+      <div class="p-5 md:p-7">
+        <p class="t-meta text-mute mb-3">10-CLASS PACK</p>
+        <p class="font-display font-bold text-[44px] md:text-[56px] leading-none mb-4">$75</p>
+        <p class="t-meta text-mute hl-t pt-3">USE ANY TIME</p>
+      </div>
+    </div>
+
+    <p class="t-body text-mute mb-8 max-w-md">
+      Memberships available for individuals, couples, families, and seniors. $50 one-time joining fee, waived for military.
+    </p>
+
+    <a href="https://kinesiofitt.gymmasteronline.com/portal/signup" target="_blank" rel="noopener" class="btn bg-ink hover:bg-cobalt text-white t-meta px-7 py-4 w-max transition-colors">
+      <span class="btn-label">SIGN UP · BECOME A MEMBER</span>
+      <span class="btn-icon material-symbols-outlined" aria-hidden="true" style="font-size:18px">arrow_forward</span>
+    </a>
+  </div>
+</section>
+
+<!-- Amenities Grid -->
+<section id="amenities" class="px-margin py-section hl-b">
+  <div class="flex items-end justify-between mb-12 md:mb-16 flex-wrap gap-6">
+    <div>
+      <p class="t-meta text-mute mb-4">[04 / AMENITIES]</p>
+      <h3 class="t-headline uppercase">Everything<br/>under one roof.</h3>
+    </div>
+    <p class="t-body-lg text-mute max-w-md">Free with membership. No add-ons, no upcharges, no booking apps.</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+    <div class="img-card">
+      <div class="dim-photo aspect-[4/5] bg-mute"><img src="web-photos/IMG_1844.jpg" alt="Free weights and dumbbells area" /></div>
+      <div class="hl-t pt-4 mt-4 flex justify-between items-baseline">
+        <span class="t-title uppercase">Free Weights</span>
+        <span class="t-meta text-mute">[01]</span>
+      </div>
+      <p class="t-body text-mute mt-2">Full dumbbell rack to 100lb, plate-loaded machines, racks and benches.</p>
+    </div>
+    <div class="img-card">
+      <div class="dim-photo aspect-[4/5] bg-mute"><img src="web-photos/IMG_1837.jpg" alt="Spin bikes" /></div>
+      <div class="hl-t pt-4 mt-4 flex justify-between items-baseline">
+        <span class="t-title uppercase">Spin Studio</span>
+        <span class="t-meta text-mute">[02]</span>
+      </div>
+      <p class="t-body text-mute mt-2">Life Fitness IC bikes. Drop in or take a coached class.</p>
+    </div>
+    <div class="img-card">
+      <div class="dim-photo aspect-[4/5] bg-mute"><img src="web-photos/IMG_1841.jpg" alt="Infrared sauna" /></div>
+      <div class="hl-t pt-4 mt-4 flex justify-between items-baseline">
+        <span class="t-title uppercase">Sauna</span>
+        <span class="t-meta text-mute">[03]</span>
+      </div>
+      <p class="t-body text-mute mt-2">Recover after a heavy session. Included with every membership.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section id="gallery" class="px-margin py-section hl-b">
+  <div class="flex items-end justify-between mb-12 md:mb-16 flex-wrap gap-6">
+    <div>
+      <p class="t-meta text-mute mb-4">[GALLERY · NO. 004]</p>
+      <h3 class="t-headline uppercase">Inside the gym.</h3>
+    </div>
+    <p class="t-body-lg text-mute max-w-md">Cardio, machines, spin, free weights, sauna. Then a hot shower and a clean towel.</p>
+  </div>
+
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 md:gap-3">
+    <figure class="img-card dim-photo aspect-[3/4] bg-warm-sand">
+      <img src="web-photos/IMG_1834.jpg" alt="Row of Cybex strength machines" loading="lazy" />
+    </figure>
+    <figure class="img-card dim-photo aspect-[3/4] bg-warm-sand">
+      <img src="web-photos/IMG_1831.jpg" alt="Wide view of the main floor with Cybex machines and exposed wood ceiling" loading="lazy" />
+    </figure>
+    <figure class="img-card dim-photo aspect-[3/4] bg-warm-sand">
+      <img src="web-photos/IMG_1838.jpg" alt="Spin bikes lined up" loading="lazy" />
+    </figure>
+    <figure class="img-card dim-photo aspect-[3/4] bg-warm-sand">
+      <img src="web-photos/IMG_1835.jpg" alt="Cybex chest press machine" loading="lazy" />
+    </figure>
+    <figure class="img-card dim-photo aspect-[3/4] bg-warm-sand">
+      <img src="web-photos/IMG_1848.jpg" alt="Kinesio Fitt apparel display on wood shelving" loading="lazy" />
+    </figure>
+    <figure class="img-card dim-photo aspect-[3/4] bg-warm-sand">
+      <img src="web-photos/IMG_1851.jpg" alt="Kinesio Fitt sign on the storefront at dusk" loading="lazy" />
+    </figure>
+  </div>
+</section>
+
+<!-- Kids Club -->
+<section id="kids-club" class="grid grid-cols-1 md:grid-cols-12 hl-b bg-concrete">
+  <div class="md:col-span-6 px-margin py-section md:hl-r flex flex-col justify-center">
+    <p class="t-meta text-mute mb-6">[05 / KIDS CLUB]</p>
+    <h3 class="t-headline uppercase mb-8">Bring the kids.<br/>Get your hour.</h3>
+    <p class="t-body-lg text-mute mb-10 max-w-md">
+      Supervised play while you train. Open Sunday afternoons and weekday mornings through evening. Included with every membership.
+    </p>
+
+    <div class="grid grid-cols-2 gap-x-8 gap-y-4 t-meta-lg max-w-md">
+      <div>
+        <p class="text-mute mb-2 t-meta">SUN</p>
+        <p>1 — 6 PM</p>
+      </div>
+      <div>
+        <p class="text-mute mb-2 t-meta">MON — THU</p>
+        <p>8 AM — 7 PM</p>
+      </div>
+      <div>
+        <p class="text-mute mb-2 t-meta">FRI</p>
+        <p>8 AM — 4 PM</p>
+      </div>
+      <div>
+        <p class="text-mute mb-2 t-meta">SAT</p>
+        <p class="text-mute">CLOSED</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="md:col-span-6 bg-ink relative min-h-[420px] md:min-h-0 overflow-hidden img-card">
+    <img src="KidsFit.jpg" alt="Kids climbing the Kinesio Fitt Kids climbing wall while staff supervises" class="w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none"></div>
+    <div class="absolute inset-0 px-margin py-12 md:py-16 flex flex-col justify-between pointer-events-none">
+      <p class="t-meta text-white/80">[NO. 005 · KIDS CLIMB]</p>
+      <div>
+        <p class="t-meta text-white/80">[INCLUDED WITH MEMBERSHIP]</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section id="reviews" class="px-margin py-section hl-b">
+  <div class="flex items-end justify-between mb-12 md:mb-16 flex-wrap gap-6 reveal">
+    <div>
+      <p class="t-meta text-mute mb-4">[06 / REVIEWS]</p>
+      <h3 class="t-headline uppercase">What members<br/>are saying.</h3>
+    </div>
+    <a href="https://www.google.com/maps/place/Kinesio+Fitt/@30.7494,-99.2294" target="_blank" rel="noopener" class="flex items-center gap-3 group">
+      <div>
+        <div class="flex items-center gap-1.5 mb-1">
+          <span class="material-symbols-outlined text-cobalt" style="font-size:18px;font-variation-settings:'FILL' 1">star</span>
+          <span class="material-symbols-outlined text-cobalt" style="font-size:18px;font-variation-settings:'FILL' 1">star</span>
+          <span class="material-symbols-outlined text-cobalt" style="font-size:18px;font-variation-settings:'FILL' 1">star</span>
+          <span class="material-symbols-outlined text-cobalt" style="font-size:18px;font-variation-settings:'FILL' 1">star</span>
+          <span class="material-symbols-outlined text-cobalt" style="font-size:18px;font-variation-settings:'FILL' 1">star</span>
+          <span class="font-display font-bold text-lg ml-1">5.0</span>
+        </div>
+        <p class="t-meta text-mute group-hover:text-cobalt transition-colors">8 GOOGLE REVIEWS · VIEW ALL →</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+    <!-- Kathryn Loeffler -->
+    <article class="border border-warm-sand p-6 md:p-8 flex flex-col gap-6 bg-off-white hover:border-cobalt transition-colors">
+      <div class="flex items-center gap-1">
+        <span class="material-symbols-outlined text-cobalt" style="font-size:16px;font-variation-settings:'FILL' 1">star</span>
+        <span class="material-symbols-outlined text-cobalt" style="font-size:16px;font-variation-settings:'FILL' 1">star</span>
+        <span class="material-symbols-outlined text-cobalt" style="font-size:16px;font-variation-settings:'FILL' 1">star</span>
+        <span class="material-symbols-outlined text-cobalt" style="font-size:16px;font-variation-settings:'FILL' 1">star</span>
+        <span class="material-symbols-outlined text-cobalt" style="font-size:16px;font-variation-settings:'FILL' 1">star</span>
+      </div>
+      <blockquote class="t-body-lg flex-1">
+        "BEST GYM EVER! I'll be honest, I normally hate gyms. I've lived in a bunch of big cities before life blessed me with our move to Mason, and this is the BEST GYM I've ever been to."
+      </blockquote>
+      <div class="hl-t pt-4 flex justify-between items-baseline">
+        <cite class="t-meta not-italic">KATHRYN LOEFFLER</cite>
+        <span class="t-meta text-mute">6 MO. AGO</span>
+      </div>
+    </article>
+
+    <!-- Margaret Dupont -->
+    <article class="border border-warm-sand p-6 md:p-8 flex flex-col gap-6 bg-off-white hover:border-cobalt transition-colors">
+      <div class="flex items-center gap-1">
+        <span class="material-symbols-outlined text-cobalt" style="font-size:16px;font-variation-settings:'FILL' 1">star</span>
+        <span class="material-symbols-outlined text-cobalt" style="font-size:16px;font-variation-settings:'FILL' 1">star</span>
+        <span class="material-symbols-outlined text-cobalt" style="font-size:16px;font-variation-settings:'FILL' 1">star</span>
+        <span class="material-symbols-outlined text-cobalt" style="font-size:16px;font-variation-settings:'FILL' 1">star</span>
+        <span class="material-symbols-outlined text-cobalt" style="font-size:16px;font-variation-settings:'FILL' 1">star</span>
+      </div>
+      <blockquote class="t-body-lg flex-1">
+        "Ubaldo is a miracle worker! I've struggled with shoulder and back pain for a long time and have seen multiple physical therapists, massage therapists, and chiropractors&mdash;none of whom were able to help."
+      </blockquote>
+      <div class="hl-t pt-4 flex justify-between items-baseline">
+        <cite class="t-meta not-italic">MARGARET DUPONT</cite>
+        <span class="t-meta text-mute">5 MO. AGO</span>
+      </div>
+    </article>
+
+    <!-- Michael Martin -->
+    <article class="border border-warm-sand p-6 md:p-8 flex flex-col gap-6 bg-off-white hover:border-cobalt transition-colors">
+      <div class="flex items-center gap-1">
+        <span class="material-symbols-outlined text-cobalt" style="font-size:16px;font-variation-settings:'FILL' 1">star</span>
+        <span class="material-symbols-outlined text-cobalt" style="font-size:16px;font-variation-settings:'FILL' 1">star</span>
+        <span class="material-symbols-outlined text-cobalt" style="font-size:16px;font-variation-settings:'FILL' 1">star</span>
+        <span class="material-symbols-outlined text-cobalt" style="font-size:16px;font-variation-settings:'FILL' 1">star</span>
+        <span class="material-symbols-outlined text-cobalt" style="font-size:16px;font-variation-settings:'FILL' 1">star</span>
+      </div>
+      <blockquote class="t-body-lg flex-1">
+        "Love this gym. Family owned and operated. Awesome and friendly staff."
+      </blockquote>
+      <div class="hl-t pt-4 flex justify-between items-baseline">
+        <cite class="t-meta not-italic">MICHAEL MARTIN</cite>
+        <span class="t-meta text-mute">1 YR AGO</span>
+      </div>
+    </article>
+
+    <!-- Trent Shepherd -->
+    <article class="border border-warm-sand p-6 md:p-8 flex flex-col gap-6 bg-off-white hover:border-cobalt transition-colors">
+      <div class="flex items-center gap-1">
+        <span class="material-symbols-outlined text-cobalt" style="font-size:16px;font-variation-settings:'FILL' 1">star</span>
+        <span class="material-symbols-outlined text-cobalt" style="font-size:16px;font-variation-settings:'FILL' 1">star</span>
+        <span class="material-symbols-outlined text-cobalt" style="font-size:16px;font-variation-settings:'FILL' 1">star</span>
+        <span class="material-symbols-outlined text-cobalt" style="font-size:16px;font-variation-settings:'FILL' 1">star</span>
+        <span class="material-symbols-outlined text-cobalt" style="font-size:16px;font-variation-settings:'FILL' 1">star</span>
+      </div>
+      <blockquote class="t-body-lg flex-1">
+        "Ubaldo is a fantastic physical therapist. He's helped me with my knee rehab over the past month and the results have been excellent. Great gym as well."
+      </blockquote>
+      <div class="hl-t pt-4 flex justify-between items-baseline">
+        <cite class="t-meta not-italic">TRENT SHEPHERD</cite>
+        <span class="t-meta text-mute">1 YR AGO</span>
+      </div>
+    </article>
+
+    <!-- Juan M. Rodriguez -->
+    <article class="border border-warm-sand p-6 md:p-8 flex flex-col gap-6 bg-off-white hover:border-cobalt transition-colors">
+      <div class="flex items-center gap-1">
+        <span class="material-symbols-outlined text-cobalt" style="font-size:16px;font-variation-settings:'FILL' 1">star</span>
+        <span class="material-symbols-outlined text-cobalt" style="font-size:16px;font-variation-settings:'FILL' 1">star</span>
+        <span class="material-symbols-outlined text-cobalt" style="font-size:16px;font-variation-settings:'FILL' 1">star</span>
+        <span class="material-symbols-outlined text-cobalt" style="font-size:16px;font-variation-settings:'FILL' 1">star</span>
+        <span class="material-symbols-outlined text-cobalt" style="font-size:16px;font-variation-settings:'FILL' 1">star</span>
+      </div>
+      <blockquote class="t-body-lg flex-1">
+        "Great gym and even better staff!"
+      </blockquote>
+      <div class="hl-t pt-4 flex justify-between items-baseline">
+        <cite class="t-meta not-italic">JUAN M. RODRIGUEZ</cite>
+        <span class="t-meta text-mute">3 YRS AGO</span>
+      </div>
+    </article>
+
+    <!-- Read-all CTA card (sits in the 6th grid cell) -->
+    <a href="https://www.google.com/maps/place/Kinesio+Fitt/@30.7494,-99.2294" target="_blank" rel="noopener"
+       class="bg-cobalt hover:bg-cobalt-dark text-white p-6 md:p-8 flex flex-col justify-between transition-colors group">
+      <div>
+        <p class="t-meta text-white/70 mb-4">[ALL REVIEWS · GOOGLE]</p>
+        <p class="font-display font-bold uppercase leading-[0.95] text-[clamp(28px,3.4vw,40px)]">Read all<br/>8 reviews →</p>
+      </div>
+      <div class="flex items-center gap-1.5 mt-8 hl-t border-white/20 pt-4">
+        <span class="material-symbols-outlined" style="font-size:16px;font-variation-settings:'FILL' 1">star</span>
+        <span class="material-symbols-outlined" style="font-size:16px;font-variation-settings:'FILL' 1">star</span>
+        <span class="material-symbols-outlined" style="font-size:16px;font-variation-settings:'FILL' 1">star</span>
+        <span class="material-symbols-outlined" style="font-size:16px;font-variation-settings:'FILL' 1">star</span>
+        <span class="material-symbols-outlined" style="font-size:16px;font-variation-settings:'FILL' 1">star</span>
+        <span class="t-meta text-white ml-2">5.0 · GOOGLE</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- Schema.org markup — populates stars + reviews in Google search results -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HealthClub",
+  "name": "Kinesio Fitt",
+  "image": "https://kinesiofittmason.com/Hero02.jpg",
+  "telephone": "+1-325-294-4300",
+  "url": "https://kinesiofittmason.com",
+  "founder": {
+    "@type": "Person",
+    "name": "Ubaldo"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "310 Fort McKavitt St",
+    "addressLocality": "Mason",
+    "addressRegion": "TX",
+    "postalCode": "76856",
+    "addressCountry": "US"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "8"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Kathryn Loeffler" },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+      "reviewBody": "BEST GYM EVER! I'll be honest, I normally hate gyms. I've lived in a bunch of big cities before life blessed me with our move to Mason, and this is the BEST GYM I've ever been to."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Margaret Dupont" },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+      "reviewBody": "Ubaldo is a miracle worker! I've struggled with shoulder and back pain for a long time and have seen multiple physical therapists, massage therapists, and chiropractors, none of whom were able to help."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Michael Martin" },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+      "reviewBody": "Love this gym. Family owned and operated. Awesome and friendly staff."
+    }
+  ]
+}
+</script>
+
+<!-- Visit -->
+<section id="visit" class="grid grid-cols-1 md:grid-cols-12 hl-b">
+  <div class="md:col-span-6 px-margin py-section md:hl-r bg-concrete flex flex-col justify-center">
+    <p class="t-meta text-mute mb-6">[07 / VISIT]</p>
+    <h3 class="t-headline uppercase mb-10">Find us<br/>on the square.</h3>
+
+    <div class="font-mono text-[14px] space-y-1 mb-10 hl-b pb-8">
+      <p>310 FORT MCKAVITT ST</p>
+      <p>MASON, TX 76856</p>
+      <p class="pt-3"><a href="tel:+13252944300" class="hover:text-cobalt transition-colors">(325) 294-4300</a></p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-x-8 gap-y-6 t-meta-lg">
+      <div>
+        <p class="text-mute mb-3 t-meta">GYM</p>
+        <p>SUN · 1—6 PM</p>
+        <p>MON—THU · 5:30A—9P</p>
+        <p>FRI · 5:30A—5P</p>
+        <p class="text-mute">SAT · CLOSED</p>
+      </div>
+      <div>
+        <p class="text-mute mb-3 t-meta">KIDS CLUB</p>
+        <p>SUN · 1—6 PM</p>
+        <p>MON—THU · 8A—7P</p>
+        <p>FRI · 8A—4P</p>
+        <p class="text-mute">SAT · CLOSED</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="md:col-span-6 min-h-[420px] md:min-h-0 relative">
+    <iframe
+      title="Map of Kinesio Fitt"
+      src="https://www.google.com/maps?q=310+Fort+McKavitt+St,+Mason,+TX+76856&output=embed"
+      class="absolute inset-0 w-full h-full border-0 grayscale"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</section>
+
+<!-- Closing CTA -->
+<a href="#" data-day-pass class="block bg-cobalt hover:bg-cobalt-dark transition-colors group">
+  <section class="px-margin py-[clamp(56px,8vw,120px)]">
+    <div class="text-center">
+      <p class="t-meta text-white/60 mb-8">[FREE DAY PASS · NO COMMITMENT]</p>
+      <h2 class="font-display font-bold text-white uppercase leading-[0.92] tracking-[-0.03em] text-[clamp(48px,9vw,140px)] group-hover:scale-[1.015] transition-transform duration-700 mb-8 cta-drift">
+        JOIN<br/>THE TEAM
+      </h2>
+      <span class="inline-flex items-center gap-3 t-meta text-white border border-white/40 px-6 py-3 group-hover:bg-white group-hover:text-cobalt-dark transition-colors">
+        CLAIM YOUR FREE DAY
+        <span class="material-symbols-outlined" aria-hidden="true" style="font-size:18px">arrow_forward</span>
+      </span>
+    </div>
+  </section>
+</a>
+
+</main>
+
+<!-- Footer -->
+<footer class="bg-ink text-stone-300 relative w-full overflow-hidden border-t border-stone-800 px-margin pt-16 pb-10">
+  <div class="absolute -bottom-4 -left-4 font-display font-bold opacity-[0.05] select-none text-white pointer-events-none leading-[0.85] uppercase tracking-tighter" style="font-size:clamp(120px,22vw,360px)">
+    KINESIO
+  </div>
+
+  <div class="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-10 mb-14">
+    <div>
+      <p class="t-meta text-stone-500 mb-4">[VISIT]</p>
+      <p class="font-mono text-[13px] leading-relaxed">310 FORT MCKAVITT ST<br/>MASON, TX 76856</p>
+      <p class="font-mono text-[13px] mt-3"><a href="tel:+13252944300" class="hover:text-cobalt transition-colors">(325) 294-4300</a></p>
+    </div>
+    <div>
+      <p class="t-meta text-stone-500 mb-4">[NAVIGATE]</p>
+      <ul class="space-y-1.5 font-display text-[14px]">
+        <li><a class="hover:text-cobalt transition-colors" href="#classes">Classes</a></li>
+        <li><a class="hover:text-cobalt transition-colors" href="#membership">Membership</a></li>
+        <li><a class="hover:text-cobalt transition-colors" href="#amenities">Amenities</a></li>
+        <li><a class="hover:text-cobalt transition-colors" href="#kids-club">Kids Club</a></li>
+        <li><a class="hover:text-cobalt transition-colors" href="#visit">Visit</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="t-meta text-stone-500 mb-4">[FOLLOW]</p>
+      <ul class="space-y-1.5 font-display text-[14px]">
+        <li><a class="hover:text-cobalt transition-colors" href="https://instagram.com/kinesiofittmason">Instagram</a></li>
+        <li><a class="hover:text-cobalt transition-colors" href="https://facebook.com/kinesiofittmason">Facebook</a></li>
+      </ul>
+    </div>
+    <div class="col-span-2 md:col-span-1">
+      <p class="t-meta text-stone-500 mb-4">[NEWSLETTER]</p>
+      <form class="flex border border-stone-700 focus-within:border-cobalt transition-colors">
+        <input type="email" placeholder="EMAIL" class="bg-transparent px-3 py-2.5 text-white placeholder-stone-600 flex-1 outline-none text-[13px] font-mono" />
+        <button type="submit" class="bg-cobalt hover:bg-cobalt-dark text-white px-4 transition-colors" aria-label="Subscribe">→</button>
+      </form>
+      <p class="t-meta text-stone-600 mt-3">Hours, classes, and the occasional news.</p>
+    </div>
+  </div>
+
+  <div class="relative z-10 hl-t border-stone-800 pt-6 flex flex-col md:flex-row justify-between gap-4 t-meta text-stone-500">
+    <p>© 2026 KINESIO FITT · MASON, TX · [NO. 001]</p>
+    <div class="flex gap-6">
+      <a class="hover:text-cobalt transition-colors" href="#">Terms</a>
+      <a class="hover:text-cobalt transition-colors" href="#">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Free Day Pass Modal -->
+<div id="day-pass-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="day-pass-title">
+  <div class="modal-backdrop" data-modal-close></div>
+  <div class="modal-card">
+    <div class="px-8 pt-8 pb-2 flex items-start justify-between">
+      <div>
+        <p class="t-meta text-mute mb-3">[FREE DAY PASS · NO COMMITMENT]</p>
+        <h3 id="day-pass-title" class="font-display font-bold uppercase leading-[0.95] text-[clamp(28px,4vw,40px)]">Claim<br/>your free day.</h3>
+      </div>
+      <button data-modal-close aria-label="Close" class="t-meta text-mute hover:text-ink transition-colors p-1 -mr-1">
+        <span class="material-symbols-outlined" aria-hidden="true" style="font-size:22px">close</span>
+      </button>
+    </div>
+
+    <form id="day-pass-form" class="px-8 pt-6 pb-8 space-y-5" novalidate>
+      <div>
+        <label for="dp-name" class="t-meta text-mute mb-1 block">FULL NAME</label>
+        <input id="dp-name" name="name" type="text" required autocomplete="name" placeholder="Jane Doe" class="modal-input" />
+      </div>
+      <div>
+        <label for="dp-phone" class="t-meta text-mute mb-1 block">PHONE</label>
+        <input id="dp-phone" name="phone" type="tel" required autocomplete="tel" placeholder="(325) 555-0100" class="modal-input" />
+      </div>
+      <div>
+        <label for="dp-email" class="t-meta text-mute mb-1 block">EMAIL</label>
+        <input id="dp-email" name="email" type="email" required autocomplete="email" placeholder="you@email.com" class="modal-input" />
+      </div>
+      <div>
+        <label for="dp-dob" class="t-meta text-mute mb-1 block">DATE OF BIRTH</label>
+        <input id="dp-dob" name="dob" type="date" required class="modal-input" />
+      </div>
+
+      <button type="submit" class="btn bg-cobalt hover:bg-cobalt-dark text-white t-meta px-7 py-4 w-full transition-colors mt-2">
+        <span class="btn-label">CLAIM FREE DAY PASS</span>
+        <span class="btn-icon material-symbols-outlined" aria-hidden="true" style="font-size:18px">arrow_forward</span>
+      </button>
+
+      <p class="t-meta text-mute text-center pt-2">By submitting you agree to be contacted by Kinesio Fitt. We'll never share your info.</p>
+    </form>
+
+    <div id="day-pass-success" class="hidden px-8 py-12 text-center">
+      <span class="material-symbols-outlined text-cobalt mb-4" style="font-size:48px">check_circle</span>
+      <h3 class="font-display font-bold uppercase text-[clamp(24px,3vw,32px)] mb-3">You're in.</h3>
+      <p class="t-body text-mute mb-6">Show this email at the front desk on your visit. We'll see you on the square.</p>
+      <button data-modal-close class="t-meta border border-warm-sand px-6 py-3 hover:bg-concrete transition-colors">CLOSE</button>
+    </div>
+  </div>
+</div>
+
+<!-- Mobile Sticky CTA -->
+<a href="#" data-day-pass class="bg-cobalt hover:bg-cobalt-dark active:bg-cobalt-dark text-white t-meta fixed bottom-0 left-0 w-full z-50 lg:hidden flex items-center justify-center py-4 transition-colors">
+  <span class="material-symbols-outlined mr-2" aria-hidden="true" style="font-size:18px">bolt</span>
+  CLAIM FREE DAY PASS
+</a>
+
+<script>
+  // Free day pass modal
+  (function () {
+    const modal = document.getElementById('day-pass-modal');
+    const form = document.getElementById('day-pass-form');
+    const success = document.getElementById('day-pass-success');
+
+    function open() {
+      modal.classList.add('is-open');
+      document.body.classList.add('modal-open');
+      setTimeout(() => modal.querySelector('input')?.focus(), 220);
+    }
+    function close() {
+      modal.classList.remove('is-open');
+      document.body.classList.remove('modal-open');
+      // reset for next open
+      setTimeout(() => {
+        form.classList.remove('hidden');
+        success.classList.add('hidden');
+        form.reset();
+      }, 200);
+    }
+
+    document.querySelectorAll('[data-day-pass]').forEach(el => {
+      el.addEventListener('click', e => { e.preventDefault(); open(); });
+    });
+    document.querySelectorAll('[data-modal-close]').forEach(el => {
+      el.addEventListener('click', e => { e.preventDefault(); close(); });
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) close();
+    });
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form));
+      // TODO: wire to a real endpoint (e.g., GymMaster lead API, Mailchimp, Formspree)
+      console.log('Day pass lead:', data);
+      form.classList.add('hidden');
+      success.classList.remove('hidden');
+    });
+  })();
+
+  // Scroll reveal
+  (function () {
+    const els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window) || !els.length) {
+      els.forEach(el => el.classList.add('is-in'));
+      return;
+    }
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(el => io.observe(el));
+  })();
+
+  // Nav shadow on scroll
+  (function () {
+    const nav = document.querySelector('nav');
+    if (!nav) return;
+    const onScroll = () => {
+      if (window.scrollY > 8) nav.classList.add('nav-scrolled');
+      else nav.classList.remove('nav-scrolled');
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+</script>
+
+</body>
+</html>
