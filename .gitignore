@@ -21,3 +21,4 @@ KidsClimb_files/
 # Local plan/scratch files
 .claude/
 *.tmp
+SKILL*.md
