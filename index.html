@@ -156,12 +156,27 @@
       linear-gradient(180deg, rgba(10,10,10,0.10) 0%, rgba(10,10,10,0.0) 40%, rgba(10,10,10,0.35) 100%);
   }
 
-  /* Mobile: reframe storefront and use a vertical overlay so text stays legible */
+  /* Mobile: stack the hero — full 16:9 photo on top, text below on solid bg */
   @media (max-width: 767px) {
-    .hero-img { object-position: 100% center; }
-    .hero-overlay {
-      background:
-        linear-gradient(180deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.35) 35%, rgba(10,10,10,0.55) 70%, rgba(10,10,10,0.85) 100%);
+    .hero-section {
+      display: block;
+      min-height: 0;
+    }
+    .hero-media {
+      position: relative;
+      inset: auto;
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      height: auto;
+    }
+    .hero-img {
+      object-position: center;
+    }
+    .hero-overlay { display: none; }
+    .hero-content {
+      position: relative;
+      padding-top: 2.25rem;
+      padding-bottom: 2.5rem;
     }
   }
 
@@ -258,13 +273,13 @@
 <main>
 
 <!-- Hero -->
-<section class="relative min-h-[88vh] flex items-center bg-ink overflow-hidden">
-  <div class="absolute inset-0 z-0">
+<section class="hero-section relative min-h-[88vh] flex items-center bg-ink overflow-hidden">
+  <div class="hero-media absolute inset-0 z-0">
     <img src="Hero02.jpg" alt="Kinesio Fitt storefront on the Mason square at night" class="hero-img w-full h-full object-cover object-right ken-burns" fetchpriority="high" decoding="async" />
     <div class="absolute inset-0 hero-overlay"></div>
   </div>
 
-  <div class="relative z-10 px-margin py-16 md:py-24 max-w-[820px]">
+  <div class="hero-content relative z-10 px-margin py-16 md:py-24 max-w-[820px]">
     <div class="t-meta text-white/70 mb-6 fade-up">
       <span>[01]</span><span class="mx-3">·</span><span>MASON, TX</span><span class="mx-3">·</span><span>NORTHWEST OF THE SQUARE</span>
     </div>
